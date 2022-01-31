@@ -19,13 +19,13 @@ echo "Setuid files:"
 echo "============="
 find / -type f -executable -perm -4000 -ls 2>/dev/null | sort -k 5
 echo ""
-ps -eo user --no-headers| sort |uniq -c
-ls -la
-ip addr
-cat helloworld.sh
-ps
 
+echo "12 largest files:"
+echo "============="
+find / -type f  -printf "%kKB %p\n" 2>/dev/null | sort -nr | head -n 12 |  find . -type f  -printf "%kKB %p\n" | sort -nr | head -n 12 | cut -d " " -f2  | xargs -n1 ls -lhtr | awk '{print $9 " " $3 " " $5}' | awk '{n=split($0,a,"/"); print a[n]}'
+echo ""
 # for the task, add
 # commands to display a title
 # commands to make a list of the 12 biggest files
 # sort/format whatever to display the list properly
+

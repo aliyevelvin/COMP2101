@@ -26,25 +26,25 @@ hour=$(date +%r)
 # Main        #
 ###############
 if [ "$weekday" = "Monday" ]; then
-	title=monday1
+	title=Monday
 elif [ "$weekday" = "Tuesday" ]; then
-	title=tuesday1
+	title=Tuesday
 elif [ "$weekday" = "Wednesday" ]; then
-	title=tuesday1
+	title=Wednesday
 elif [ "$weekday" = "Thursday" ]; then
-	title=tuesday1
+	title=Thursday
 elif [ "$weekday" = "Friday" ]; then
-	title=tuesday1
+	title=Friday
 elif [ "$weekday" = "Saturday" ]; then
-	title=tuesday1
+	title=Saturday
 elif [ "$weekday" = "Sunday" ]; then
-	title=tuesday1
+	title=Sunday
 else
 echo "no such weekday"
 fi
 
 cat <<EOF
-Welcome to planet $hostname, "$title $myname!"
+Welcome to planet $hostname, "$title $myname"
 It is $weekday at $hour
 
 EOF

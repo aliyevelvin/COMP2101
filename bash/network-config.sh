@@ -81,6 +81,6 @@ LAN Address     : $(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|awk '/ine
 LAN Hostname    : $(getent hosts $(hostname -I)| awk '{print $2}')
 External IP     : $(curl -s icanhazip.com)
 External Name   : $(getent hosts $(curl -s icanhazip.com) | awk '{print $2}')
-Router Address  : $(ip r s default| awk '{print $3}')
-Router Hostname : $(route |grep "default" | awk '{print $2}')
+Router_Address  : $(ip r s default| awk '{print $3}')
+Router_Hostname : $(route |grep "default" | awk '{print $2}')
 EOF

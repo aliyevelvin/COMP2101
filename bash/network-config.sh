@@ -75,12 +75,20 @@
 #   External IP     : $myExternalIP
 #   External Name   : $myExternalName
 
+hostname=$(hostname)
+lan_address=$(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|awk '/inet /{gsub(/\/.*/,"");print $2}')
+lan_hostname=$(getent hosts $(hostname -I)| awk '{print $2}')
+external_ip=$(curl -s icanhazip.com)
+external_name=$(getent hosts $(curl -s icanhazip.com) | awk '{print $2}')
+router_address=$(ip r s default| awk '{print $3}')
+router_hostname=$(route |grep "default" | awk '{print $2}')
+
 cat <<EOF
-Hostname        : $(hostname)
-LAN Address     : $(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|awk '/inet /{gsub(/\/.*/,"");print $2}')
-LAN Hostname    : $(getent hosts $(hostname -I)| awk '{print $2}')
-External IP     : $(curl -s icanhazip.com)
-External Name   : $(getent hosts $(curl -s icanhazip.com) | awk '{print $2}')
-Router_Address  : $(ip r s default| awk '{print $3}')
-Router_Hostname : $(route |grep "default" | awk '{print $2}')
+Hostname	: $hostname
+LAN Address	: $lan_address
+LAN Hostname	: $lan_hostname
+External IP	: $external_ip
+External Name	: $external_name
+Router Address	: $router_address
+Router Hostname	: $router_hostname
 EOF

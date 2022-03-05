@@ -15,21 +15,20 @@
 # Usage:
 #   error-message ["some text to print to stderr"]
 function error-message {
-  echo "You entered 1, this will be sent to stderr" >&2
+  echo "error will be sent to stderr" >&2
 }
 
 # This function will send a message to stderr and exit with a failure status
 # Usage:
 #   error-exit ["some text to print to stderr" [exit-status]]
 function error-exit {
-  echo "Message will be sent to stderror and the function will exit with a failure status" >&2
+  echo "Error Occured" >&2
   exit 1
 }
 #This function displays help information if the user asks for it on the command line or gives us a bad command line
 function displayhelp {
   printf "Usage is: sysconfig.sh [OPTION]...\n
   System information utility\n
-  -h                 displays the help menu\n
   --host             display host information\n
   --domainname       display domain information\n
   --ipconfig         display interface information\n

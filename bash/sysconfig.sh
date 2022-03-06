@@ -27,28 +27,26 @@ function error-exit {
 }
 #This function displays help information if the user asks for it on the command line or gives us a bad command line
 function displayhelp {
-  printf "Usage is: sysconfig.sh [OPTION]...\n
-  System information utility\n
-  --host             display host information\n
-  --domainname       display domain information\n
-  --ipconfig         display interface information\n
-  --os               display operating system information\n
-  --cpu              display CPU information\n
-  --memoryinfo       display memory information\n
-  --disk             display disk information\n
-  --printer          display printer information\n\n"
+cat <<EOF
+HELP OPTION:
+  --host             host information\n
+  --domainname       domain information\n
+  --ipconfig         interface information\n
+  --os               operating system information\n
+  --cpu              CPU information\n
+  --memoryinfo       memory information\n
+  --disk             disk information\n
+  --printer          printer information\n\n
+NOT RECOGNIZED OTHER OPTION
+EOF
 }
 
 # This function will remove all the temp files created by the script
 # The temp files are all named similarly, "/tmp/somethinginfo.$$"
 # A trap command is used after the function definition to specify this function is to be run if we get a ^C while running
 function cleanup {
-  echo "Cleaning up temporary files"
-  for tempFile in /tmp/*info.*
-  do
-    echo "Removing $tempFile"
-    rm $tempFile
-  done
+   rm -rf /tmp/*info*
+  echo "Cleanup temporary files"
 }
 
 trap cleanup SIGINT
